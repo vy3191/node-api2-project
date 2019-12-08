@@ -38,6 +38,17 @@ router.post("/", async (req,res) => {
    }
 });
 
+router.put("/:id", async (req,res) => {
+     const {id} = req.params;
+     const { title, contents} = req.body;
+     if(!title || !contents) return res.status(400).json({ errorMessage: "Please provide title and contents for the post." });
+     db.findById(id)
+       .then( data => {
+           console.log(data)
+            res.status(200).json(data)
+       })
+})
+
 router.delete("/:id", async (req,res) => {
    // try {
    //    const post = await db.findById(req.params.id);
