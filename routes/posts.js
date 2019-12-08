@@ -8,7 +8,8 @@ router.get("/", async (req,res) => {
    try {
      const posts = await db.find();
      res.status(200).json(posts)
-   } catch {
+   } catch(error) {
+     console.log(error);
      res.status(500).json({ error: "The posts information could not be retrieved." });
    }
 });
