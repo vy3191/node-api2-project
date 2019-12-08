@@ -25,4 +25,17 @@ router.get("/:id", async (req,res) => {
    }
 });
 
+router.post("/", async (req,res) => {
+   try {
+      const {title,contents} = req.body;
+      if(!title || !contents) res.json(400).json({ errorMessage: "Please provide title and contents for the post." });
+      const newPost = await db.insert({title,contents});
+      const createdPost = await db.findById(newPost.id)
+      console.log(createdPost)
+      res.status(201).json(createdPost)
+   }catch(error) {
+      res.status(500).json({ error: "There was an error while saving the post to the database" });
+   }
+})
+
 module.exports = router;
