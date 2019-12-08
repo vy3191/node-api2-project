@@ -36,6 +36,30 @@ router.post("/", async (req,res) => {
    }catch(error) {
       res.status(500).json({ error: "There was an error while saving the post to the database" });
    }
+});
+
+router.delete("/:id", async (req,res) => {
+   // try {
+   //    const post = await db.findById(req.params.id);
+   //    if(!post.title || !post.contents) res.status(400).json({ message: "The post with the specified ID does not exist." });
+   //    await db.remove(req.params.id);
+   //    res.status(200).json(post);
+     
+   // } catch {
+   //    res.status(500).json({ error: "The post could not be removed" })
+   // }
+                db.findById(req.params.id)
+                  .then( data => {
+                     console.log('line 53', data[0]);
+                     const post = data[0];
+                     if(!post.title || !post.contents) res.status(400).json({ message: "The post with the specified ID does not exist." });
+                     return db.remove(req.params.id).then(() => post);
+                  })
+                  .then( data => {
+                     console.log('line 58', data);
+                     return res.json(data)}
+                     )
+                  .catch( err => res.status(500).json({ error: "The post could not be removed" }));
 })
 
 module.exports = router;
