@@ -1,8 +1,11 @@
 const express = require("express");
 const db = require("../data/db");
+const commentsRouter = require("./comments");
 
 
 const router = express.Router();
+
+router.use("/:id/comments", commentsRouter);
 
 router.get("/", async (req,res) => {
    try {
@@ -71,6 +74,6 @@ router.delete("/:id", async (req,res) => {
                      return res.json(data)}
                      )
                   .catch( err => res.status(500).json({ error: "The post could not be removed" }));
-})
+});
 
 module.exports = router;
