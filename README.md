@@ -148,6 +148,7 @@ When the client makes a `GET` request to `/api/posts/:id`:
   - return the following JSON object: `{ error: "The post information could not be retrieved." }`.
 
 When the client makes a `GET` request to `/api/posts/:id/comments`:
+                                         
 
 - If the _post_ with the specified `id` is not found:
 
