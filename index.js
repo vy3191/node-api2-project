@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const server = express();
 // const dotenv = require("dotenv");
@@ -7,7 +8,7 @@ const portRouter = require("./routes/posts");
 const port = process.env.PORT || 4000;
 const host = process.env.HOST || "0.0.0.0";
 
-console.log(host)
+console.log(`Line10`, host)
 
 server.use(express.json());
 server.use("/api/posts", portRouter);
