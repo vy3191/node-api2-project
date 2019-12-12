@@ -8,13 +8,14 @@
     "server": "nodemon -r dotenv/config index.js",
     "start": "node index.js"
   },
-  "dependencies": {    
+  "dependencies": {
     "express": "^4.17.1",
     "knex": "^0.20.3",
     "sqlite3": "^4.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.1",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.2.0"
   }
 }
+

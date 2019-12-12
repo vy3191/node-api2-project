@@ -2,11 +2,12 @@ const express = require("express");
 const server = express();
 // const dotenv = require("dotenv");
 const portRouter = require("./routes/posts");
-const PORT = process.env.PORT || 8000;
+const port = process.env.PORT || 8000;
+const host = process.env.HOST || "0.0.0.0";
 
 
 // dotenv.config();
-console.log(process.env);
+
 server.use(express.json());
 server.use("/api/posts", portRouter);
 
@@ -19,7 +20,7 @@ server.get("/", (req,res) => {
 });
 
 
-server.listen(PORT, () => {
-   console.log(`App is running at https://localhost/${PORT}`);
-});
+server.listen(port, host, () => {
+	console.log(`Running at http://${host}:${port}`)
+})
 
